@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'geocodio/version'
 
 Gem::Specification.new do |s|
-  s.name          = 'geocodio'
+  s.name          = 'geocodio-ocd'
   s.version       = Geocodio::VERSION
-  s.authors       = ['David Celis']
-  s.email         = ['me@davidcel.is']
+  s.authors       = ['David Celis', 'Shairon Toledo']
+  s.email         = ['me@davidcel.is', 'shairon.toledo@gmail.com']
 
-  s.summary       = %q{An unofficial Ruby client library for geocod.io}
+  s.summary       = %q{An unofficial Ruby client library for geocod.io API v1.7}
   s.description   = %q{Geocodio is a geocoding service that aims to fill a void in the community by allowing developers to geocode large amounts of addresses without worrying about daily limits and high costs.}
-  s.homepage      = 'https://github.com/davidcelis/geocodio'
+  s.homepage      = 'https://github.com/shairontoledo/geocodio-ocd'
   s.license       = 'MIT'
 
   s.files         = Dir['lib/**/*.rb']

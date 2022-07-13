@@ -1,13 +1,13 @@
-# Geocodio [![Build Status](https://travis-ci.org/davidcelis/geocodio.png?branch=master)](https://travis-ci.org/davidcelis/geocodio) [![Coverage Status](https://coveralls.io/repos/davidcelis/geocodio/badge.png)](https://coveralls.io/r/davidcelis/geocodio) [![Code Climate](https://codeclimate.com/github/davidcelis/geocodio.png)](https://codeclimate.com/github/davidcelis/geocodio)
+# Geocodio OCD 
 
-Geocodio is a lightweight Ruby wrapper around the [geocod.io][geocod.io] API for [`versions >= 1.7`](https://www.geocod.io/docs/#v1-7).
+Geocodio OCD is a lightweight Ruby wrapper around the [geocod.io][geocod.io] API for [`versions >= 1.7`](https://www.geocod.io/docs/#v1-7) with OCD IDs and Canadian support. It's a fork from https://github.com/davidcelis/geocodio (API v1.2)
 
 ## Installation
 
 In your Gemfile:
 
 ```ruby
-gem 'geocodio'
+gem 'geocodio-ocd'
 ```
 
 ## Usage
@@ -102,11 +102,11 @@ address = geocodio.geocode(['54 West Colorado Boulevard Pasadena CA 91105'], fie
 address.congressional_districts
 # => #<Geocodio::CongressionalDistrict:0x007fa3c15f41c0 @name="Congressional District 27" @district_number=27 @congress_number=113 @congress_years=2013..2015>
 
-address.house_district
-# => #<Geocodio::StateLegislativeDistrict:0x007fa3c15f41c0 @name="Assembly District 41" @district_number=41>
+address.house_districts
+# => [#<Geocodio::StateLegislativeDistrict:0x007fa3c15f41c0 @name="Assembly District 41" @district_number=41>]
 
-address.senate_district
-# => #<Geocodio::StateLegislativeDistrict:0x007fa3c15f41c0 @name="State Senate District 25" @district_number=25>
+address.senate_districts
+# => [#<Geocodio::StateLegislativeDistrict:0x007fa3c15f41c0 @name="State Senate District 25" @district_number=25>]
 
 address.unified_school_district # or .elementary_school_district and .secondary_school_district if not unified
 # => #<Geocodio::SchoolDistrict:0x007fa3c15f41c0 @name="Pasadena Unified School District" @lea_code="29940" @grade_low="KG" @grade_high="12">
@@ -119,7 +119,7 @@ address.timezone.observes_dst?
 
 #### Canadian address
 
-To fetch Canadian federal and provincial electoral districts, include to [`provriding` and `riding`](https://www.geocod.io/docs/#riding-canadian-provincial-electoral-district) to the  `fields` input. From the result, check if the Canadian data is available by method `Address#canadian?` then it's `true`, get the districts data from method `Address#canadian` as following:
+To fetch Canadian federal and provincial electoral districts, pass [`provriding` and `riding`](https://www.geocod.io/docs/#riding-canadian-provincial-electoral-district) to the `fields` input parameter. From the result, check if the Canadian data is available by method `Address#canadian?` then get the districts data from method `Address#canadian` as following:
 
 ```ruby
 address = geocodio.geocode(['160 Spadina Ave., Toronto, ON M5T 2C2, Canada'], 
@@ -144,10 +144,9 @@ address.canadian.provincial_electoral_district
 #  @source="Elections Ontario">
 ```
 
-
 ## Contributing
 
-1. Fork it ( http://github.com/davidcelis/geocodio/fork )
+1. Fork it ( https://github.com/shairontoledo/geocodio-ocd/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
