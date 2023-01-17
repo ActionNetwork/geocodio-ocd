@@ -31,7 +31,10 @@ module Geocodio
 
       if payload['bio']
         @name = "#{payload['bio']['first_name']} #{payload['bio']['last_name']}"
-        @birthday = Date.new(*payload['bio']['birthday'].split('-').map(&:to_i))
+        @birthday = nil
+        @birthday = if payload['bio']['birthday'].present?
+                      Date.new(*payload['bio']['birthday'].split('-').map(&:to_i))
+                    else nil end
         @gender = payload['bio']['gender']
         @party = payload['bio']['party']
       end
