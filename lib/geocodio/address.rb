@@ -8,7 +8,8 @@ module Geocodio
   class Address
     include Geocodio::Canadian
     attr_reader :number, :predirectional, :street, :suffix, :postdirectional,
-                :formatted_street, :city, :state, :zip, :county
+                :formatted_street, :city, :state, :zip, :county, 
+                :secondaryunit, :secondarynumber
 
     attr_reader :latitude, :longitude
     alias :lat :latitude
@@ -56,6 +57,8 @@ module Geocodio
       @state            = attributes['state']
       @zip              = attributes['zip']
       @county           = attributes['county']
+      @secondaryunit    = attributes['secondaryunit']
+      @secondarynumber  = attributes['secondarynumber']
     end
 
     def set_coordinates(coordinates)
